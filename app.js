@@ -5,8 +5,8 @@ var bodyParser = require("body-parser"),
   express = require("express"),
   app = express();
 
-mongoose.connect("mongoose://localhost/restful_blog_app");
-app.set("view engin", "ejs");
+mongoose.connect("mongodb://localhost/restful_blog_app");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSanitizer());
@@ -17,9 +17,9 @@ var blogSchema = new mongoose.Schema({
   title: String,
   image: String,
   body: String,
-  created:
+  created: 
     {
-      type: Date, defaut: Date.now
+      type: Date, default: Date.now
     }
 });
 
@@ -39,7 +39,6 @@ app.get("/blogs", (req, res) => {
       res.render("index", { blogs: blogs });
     }
   });
-  res.render("index");
 });
 
 // Add new post
